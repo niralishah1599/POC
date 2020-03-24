@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   
+    <button class="navbar-toggler" type="button"  (click)="toogleNavbar()" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" ></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText" [ngClass]="{'show':navbarOpen}">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link"  [routerLink]="['/pre-landing/dashboard']" >Dashboard <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/pre-landing/product']" >Product <!--<span class="sr-only">(current)</span>--></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/pre-landing/order']" >Order <!--<span class="sr-only">(current)</span>--></a>
+        </li>
+       
+      </ul>
+      <span class="navbar-text">
+       <i class="fa fa-user fa-2x" id="user" (click)="showUserProfile()"></i>
+      </span>
+      <div class="form-group">
+        <button type="submit" name="submit" class="btn btn-danger btn-md" (click)="logout()"value="logout">Logout</button>
+    </div>
+    </div>
+  </nav>
+
+  <div *ngIf="showProfile">
+    
+    <div id="mySidenav" class="sidenav" >
+      <button type="button"  class="btn btn-info" id="closebtn" (click)="showProfile=false"  >&times;</button>
+    
+      {{email}}
+
+      <div class="form-group">
+        <label for="password" class="text-info">Password:</label><br>
+        <input type="password" class="form-control" id="password" minlength="6" size="50"
+          name="password" required />
+    </div>
+  
+    </div>
+  </div>
+
+ 
+
+
+
+

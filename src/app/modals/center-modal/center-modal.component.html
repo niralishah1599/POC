@@ -1,0 +1,25 @@
+<div class="modal-fade" data-backdrop="static"> 
+  <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title">{{product.id}}  {{product.name}}</h5> -->
+          <button type="button" class="btn btn-danger close" data-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <div *ngIf="product">
+          <app-add-edit-product [editProduct]="product"></app-add-edit-product>
+        </div>
+        <div *ngIf="order">
+          <app-add-edit-order [editOrder]="order"></app-add-edit-order>
+        </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close('Close click')">Close</button>
+        </div> -->
+      </div>
+
+    </div> 
+
+
+    

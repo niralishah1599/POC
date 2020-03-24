@@ -1,0 +1,97 @@
+<div class="body">
+  <div class="container">
+    <div class="row">
+      <div class="main col-xs-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Id/Name" [(ngModel)]="searchItem"
+            (input)="filterProduct($event)">
+        </div>
+      </div>
+      <div class="col-xs-4 pt-3" style="margin-top:5px">
+        <div class="dropdown">
+          <select id="supplier" class="btn btn-light" (change)="filterProduct($event,'supplier')">
+            <option value="Supplier">Supplier</option>
+            <option *ngFor="let supplier of suppliers">
+              {{supplier}}
+            </option>
+          </select>
+        </div>
+      </div>&nbsp;
+      <div class="col-xs-4 pt-3">
+        <div class="dropdown">
+          <select id="categories" class="btn btn-light" (change)="filterProduct($event,'category')">
+            <option value="Category">Category</option>
+            <option *ngFor="let category of categories">
+              {{category}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-xs-4 pt-3" style="margin-left:420px">
+        <button type="button" class="btn btn-primary" (click)="open(content)">
+          Add
+        </button>
+
+      </div>&nbsp;
+      <div class="col-xs-4 pt-3">
+        <button type="submit" class="btn btn-success" (click)="exportAsXLSX()" style="float:right;">Export To
+          Excel</button>
+      </div>
+
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ProductId</th>
+            <th scope="col">ProductName</th>
+            <th scope="col">Supplier</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Discounted</th>
+            <th scope="col">Discount</th>
+            <th scope="col">Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.supplier}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.discounted}}</td>
+            <ng-container *ngIf="product.discounted==discount;else elseBlock">
+              <td>
+                <input type="number" class="form-control" name="discount" id="discount" #discountinput="ngModel"
+                  [(ngModel)]="product.discount" required />
+                <div *ngIf="discountinput.invalid && (discountinput.touched || discountinput.dirty)">
+                  <div *ngIf="discountinput.errors?.required" class="alert alert-danger">
+                    Field is Required
+                  </div>
+
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-template #elseBlock>
+              <td>--</td>
+            </ng-template>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="opencenterModal(product)">
+                edit
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>

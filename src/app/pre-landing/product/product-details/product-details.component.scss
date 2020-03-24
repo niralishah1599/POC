@@ -1,0 +1,268 @@
+.main {
+    max-width: 180px;
+    margin: 20px ;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.dropdown{
+    min-height: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    
+}
+#categories {
+    width: 140px;
+    height: 38px;
+    box-shadow: none;
+    outline: none;
+}
+
+
+
+// .modal.show{
+//     display: block;
+//   }
+
+
+
+
+//   #myImg {
+//     border-radius: 5px;
+//     cursor: pointer;
+//     transition: 0.3s;
+//   }
+  
+//   #myImg:hover {opacity: 0.7;}
+  
+//   /* The Modal (background) */
+//   .modal.show {
+    
+//     display: block; /* Hidden by default */
+//     position: fixed; /* Stay in place */
+//     z-index: 1; /* Sit on top */
+//     padding-top: 100px; /* Location of the box */
+//     left: 0;
+//     top: 0;
+//     width: 100%; /* Full width */
+//     height: 100%; /* Full height */
+//     overflow: auto; /* Enable scroll if needed */
+//     background-color: rgb(0,0,0); /* Fallback color */
+//     background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+//   }
+  
+//   /* Modal Content (image) */
+//   .modal-content {
+//     margin: auto;
+//     display: block;
+//     width: 80%;
+//     max-width: 700px;
+//   }
+  
+//   /* Caption of Modal Image */
+//   #caption {
+//     margin: auto;
+//     display: block;
+//     width: 80%;
+//     max-width: 700px;
+//     text-align: center;
+//     color: #ccc;
+//     padding: 10px 0;
+//     height: 150px;
+//   }
+  
+//   /* Add Animation */
+//   .modal-content, #caption {  
+//     -webkit-animation-name: zoom;
+//     -webkit-animation-duration: 0.6s;
+//     animation-name: zoom;
+//     animation-duration: 0.6s;
+//   }
+  
+//   @-webkit-keyframes zoom {
+//     from {-webkit-transform:scale(0)} 
+//     to {-webkit-transform:scale(1)}
+//   }
+  
+//   @keyframes zoom {
+//     from {transform:scale(0)} 
+//     to {transform:scale(1)}
+//   }
+  
+//   /* The Close Button */
+//   .close {
+//     position: absolute;
+//     top: 15px;
+//     right: 35px;
+//     color: #f1f1f1;
+//     font-size: 40px;
+//     font-weight: bold;
+//     transition: 0.3s;
+//   }
+  
+//   .close:hover,
+//   .close:focus {
+//     color: #bbb;
+//     text-decoration: none;
+//     cursor: pointer;
+//   }
+  
+//   /* 100% Image Width on Smaller Screens */
+//   @media only screen and (max-width: 700px){
+//     .modal-content {
+//       width: 100%;
+//     }
+//   }
+
+
+//   .sidenav {
+//     height: 100%;
+//     width: 30%;
+//     position: fixed;
+//     z-index: 1;
+//     top: 0;
+//     right: 0;
+//     left: 1;
+//     background-color:white;
+//     overflow-x: hidden;
+//     transition: 0.5s;
+//     margin-top:80px;
+//     padding-top: 60px;
+//     }
+    
+//     @media screen and (max-height: 450px) {
+//     .sidenav {padding-top: 15px;}
+//     .sidenav a {font-size: 18px;}
+//     }
+
+//     .modal-holder{
+//       animation-name: example;
+//       animation-duration: 0.5s;
+//       }
+      
+//       @keyframes example {
+//       from {
+//       right: -100px;
+//       opacity: 1;
+//       }
+//       to {
+//       right: 0;
+//       opacity: 1;
+//       }
+//       }
+    
+
+
+
+      /*---/
+/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  position: fixed;
+  margin: auto;
+  width: 320px;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+      -ms-transform: translate3d(0%, 0, 0);
+       -o-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal.left .modal-body,
+.modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+/*Left*/
+.modal.left.fade .modal-dialog{
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+     -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+       -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+          transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.left.fade.in .modal-dialog{
+  left: 0;
+  color:black;
+}
+      
+/*Right*/
+.modal.right.fade .modal-dialog {
+  right: -320px;
+  color:black;
+  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+     -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+       -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+          transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.in .modal-dialog {
+  right: 0;
+}
+
+/* ----- MODAL STYLE ----- */
+.modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.modal-header {
+  border-bottom-color:black;
+  background-color: #FAFAFA;
+  color:black
+}
+
+ 
+
+/* ----- v CAN BE DELETED v ----- */
+body {
+background-color: #78909C;
+color:black;
+}
+
+.demo {
+padding-top: 60px;
+padding-bottom: 110px;
+}
+
+.btn-demo {
+margin: 15px;
+padding: 10px 15px;
+border-radius: 0;
+font-size: 16px;
+background-color: #FFFFFF;
+}
+
+.btn-demo:focus {
+outline: 0;
+}
+
+
+

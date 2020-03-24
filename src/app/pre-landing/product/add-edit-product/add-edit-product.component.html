@@ -1,0 +1,40 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+     <div class="form-group">
+      <label for="Name">Name</label>
+      <input type="text" class="form-control" formControlName="name">
+     </div>
+     <div class="form-group">
+      <label for="Name">supplier</label>
+      <input type="text" class="form-control" formControlName="supplier">
+     </div>
+     <div class="form-group">
+      <label for="Name">Category</label>
+      <input type="text" class="form-control" formControlName="category">
+     </div>
+     <div class="form-group">
+      <label for="Name">Price</label>
+      <input type="text" class="form-control" formControlName="price">
+     </div>
+     
+    
+      <div class="form-group">
+        <label>Discounted</label><br>
+        <input id="Yes" type="radio" value="Yes" name="discounted" (change)="isShowDiscount($event)"
+          formControlName="discounted" checked="checked">
+        <label for="Yes">Yes</label>
+        <input id="No" type="radio" value="No" name="discounted" (change)="isShowDiscount($event)"
+          formControlName="discounted">
+        <label for="No">No</label>
+      
+      </div>
+     <div *ngIf="showDiscount">
+      <div class="form-group">
+      <label>Discount<input type="text" class="form-control" formControlName="discount"></label>
+    </div>
+    </div>
+    <br>
+    <!-- // -->
+    <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">
+      Submit
+    </button>
+  </form>
