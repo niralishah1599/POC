@@ -1,13 +1,13 @@
+//module
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Routes, RouterModule} from '@angular/router';
 
-//routes
-import {Router,Routes, RouterModule} from '@angular/router';
+//component
 import { PreLandingComponent } from './pre-landing.component';
 import { DashboardComponent } from './header/dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
-import { OrderDetailsComponent } from './order/order-details/order-details.component';
-import { SideModalComponent } from '../modals/side-modal/side-modal.component';
+
 const routes:Routes=[
   {
     path:'',

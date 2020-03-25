@@ -10,6 +10,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './add-edit-product.component.html',
   styleUrls: ['./add-edit-product.component.scss']
 })
+
 export class AddEditProductComponent implements OnInit {
 
   constructor(private _productService: ProductService, private fb: FormBuilder, private angularFireDatabase: AngularFireDatabase,private activeModal:NgbActiveModal) { }

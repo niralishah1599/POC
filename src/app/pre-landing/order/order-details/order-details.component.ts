@@ -19,6 +19,7 @@ export class OrderDetailsComponent implements OnInit {
   content:string="addOrder";
   searchItem:string;
   filteredOrders:Iorder[] = [];
+  advanceSearchContent:string="advanceSearch";
  
   constructor(private _orderService:OrderServiceService,private _orderFilter:orderFilter,private modalService:NgbModal) { }
 
@@ -43,18 +44,24 @@ export class OrderDetailsComponent implements OnInit {
   }
 
 
-  open(content)
+  openSideModal(content)
   {
-      console.log(content);
+     // console.log(content);
       const modalAddRef=this.modalService.open(SideModalComponent);
       modalAddRef.componentInstance.content=content;
   }
 
-  opencenterModal(order:Iorder)
+  openCenterModal(order:Iorder)
   {
     const modalRef=this.modalService.open(CenterModalComponent);
     modalRef.componentInstance.order=order;
 
+  }
+
+  openAdvanceSearchSideModal(advanceSearchcontent)
+  {
+    const modalSearchRef=this.modalService.open(SideModalComponent);
+    modalSearchRef.componentInstance.advanceSearchcontent=advanceSearchcontent;
   }
 
 }

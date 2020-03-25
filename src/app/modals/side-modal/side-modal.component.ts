@@ -9,18 +9,27 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 export class SideModalComponent implements OnInit {
 
   @Input() public content;
-  add:boolean=false;
+  @Input() public advanceSearchcontent;
+  order:boolean=false;
+  search:boolean=false;
+  product:boolean=false;
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
+    console.log(this.advanceSearchcontent);
     if(this.content=="addOrder")
     {
-      this.add=true;
+      this.order=true;
     }
-    else{
-      console.log("yup product")
-      this.add=false;
+    if(this.content=="addProduct")
+    {
+      this.product=true;
     }
+   
+   if(this.advanceSearchcontent=="advanceSearch")
+   {
+     this.search=true;
+   }
   }
 
 }

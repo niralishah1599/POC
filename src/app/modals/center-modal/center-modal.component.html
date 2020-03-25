@@ -1,7 +1,12 @@
 <div class="modal-fade" data-backdrop="static"> 
   <div class="modal-content">
         <div class="modal-header">
-          <!-- <h5 class="modal-title">{{product.id}}  {{product.name}}</h5> -->
+          <div *ngIf="product">
+           <h5 class="modal-title">{{product.id}}  {{product.name}}</h5>
+        </div>
+        <div *ngIf="order">
+          <h5 class="modal-title">{{order.id}}  {{order.customerName}}</h5>
+        </div>
           <button type="button" class="btn btn-danger close" data-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>

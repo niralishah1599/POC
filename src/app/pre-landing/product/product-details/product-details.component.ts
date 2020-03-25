@@ -1,14 +1,24 @@
 import { Component, OnInit ,Input } from '@angular/core';
-import {Iproduct} from 'src/app/models/product';
 import {Location} from '@angular/common';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
+//interface
+import {Iproduct} from 'src/app/models/product';
+
+
+//firedatabase
 import { AngularFireDatabase } from 'angularfire2/database';
 
 //service
 import {ProductService} from 'src/app/services/product.service';
-import {FilterPipe} from 'src/app/pipes/filter.pipe';
+
+
+//component
 import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.component';
 import { CenterModalComponent } from 'src/app/modals/center-modal/center-modal.component';
+
+//pipe
+import {FilterPipe} from 'src/app/pipes/filter.pipe';
 
 @Component({
   selector: 'app-product-details',
@@ -34,7 +44,7 @@ export class ProductDetailsComponent implements OnInit {
   //searchedProducts: [];
   selectedSupplier: string;
   selectedCategory: string;
- content:string="addProduct";
+  content:string="addProduct";
   constructor(public _productService: ProductService,public location:Location, public _filterPipe: FilterPipe, private angularFireDatabase: AngularFireDatabase,private modalService:NgbModal) { }
 
   ngOnInit() {
@@ -56,7 +66,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  open(content)
+  openSideModal(content)
   {
    console.log("in product",content);
    const modalAddRef=this.modalService.open(SideModalComponent);
@@ -64,7 +74,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  opencenterModal(product:Iproduct)
+  openCenterModal(product:Iproduct)
   {
     const modalRef=this.modalService.open(CenterModalComponent);
     modalRef.componentInstance.product=product;

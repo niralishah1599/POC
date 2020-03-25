@@ -13,13 +13,13 @@
         </div>
        
         <div class="col-xs-4 pt-3" style="margin-left:420px">
-          <button type="button" class="btn btn-primary" (click)="open(content);" >
+          <button type="button" class="btn btn-primary" (click)="openSideModal(content);" >
             Add
           </button>
   
         </div>&nbsp;
         <div class="col-xs-4 pt-3">
-          <button type="submit" class="btn btn-success"  style="float:right;">
+          <button type="submit" class="btn btn-success"  style="float:right;" (click)="openAdvanceSearchSideModal(advanceSearchContent)">
             Advance Search</button>
         </div>
   
@@ -44,7 +44,7 @@
               <td>{{order.orderDate}}</td>
                <td>{{order.orderTotal}}</td>
               <td>
-                <button type="button" class="btn btn-primary" (click)="opencenterModal(order)">
+                <button type="button" class="btn btn-primary" (click)="openCenterModal(order)">
                   Edit
                 </button>
               </td>

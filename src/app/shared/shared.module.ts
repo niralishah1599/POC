@@ -5,6 +5,7 @@ import { AddEditOrderComponent } from '../pre-landing/order/add-edit-order/add-e
 import { AddEditProductComponent } from '../pre-landing/product/add-edit-product/add-edit-product.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CenterModalComponent } from '../modals/center-modal/center-modal.component';
+import { AdvanceSearchComponent } from '../pre-landing/order/advance-search/advance-search.component';
 
 
 
@@ -14,6 +15,7 @@ import { CenterModalComponent } from '../modals/center-modal/center-modal.compon
     AddEditOrderComponent,
     AddEditProductComponent,
     CenterModalComponent,
+    AdvanceSearchComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { CenterModalComponent } from '../modals/center-modal/center-modal.compon
     SideModalComponent,
     AddEditOrderComponent,
     AddEditProductComponent,
-    CenterModalComponent,
+    AdvanceSearchComponent,
+    CenterModalComponent
     ]
   
 })

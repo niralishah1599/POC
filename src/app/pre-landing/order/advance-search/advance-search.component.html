@@ -1,0 +1,39 @@
+<div class="body">
+    <div class="container">
+      <div class="row">
+       
+       
+        <div class="col-xs-4 pt-3" style="margin-top:5px">
+           
+          <div class="dropdown">
+            <label>Shipper </label>
+            <select id="shipper" class="btn btn-light" multiple>
+             <option *ngFor="let shipper of shipper">
+                {{shipper}}
+              </option>
+            </select>
+          </div>
+        </div>&nbsp;
+        <div class="col-xs-4 pt-3" style="margin-top:5px">
+            
+          <div class="dropdown">
+            <label>CustomerName </label>
+            <select id="customerName" class="btn btn-light"  multiple>
+              <!--  <option value="Category">Category</option> --> 
+              <option *ngFor="let name of customerName">
+                {{name}}
+              </option>
+            </select>
+          </div>
+        </div>
+  
+</div>
+<br>
+<fieldset>
+    <legend style="padding:10px 0;">Order Date:</legend>
+    <label>Select Date: </label>
+    <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+        <input class="form-control" type="text" readonly />
+        <span class="input-group-addon"><button class="btn-btn-danger">hello</button></span>
+    </div>
+  </fieldset>

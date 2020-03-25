@@ -1,25 +1,27 @@
+//module
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes,RouterModule} from  '@angular/router'
-import { OrderDetailsComponent } from './order-details/order-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule,NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from 'src/app/shared/shared.module';
+
+//component
 import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.component';
 import { AddEditOrderComponent } from './add-edit-order/add-edit-order.component';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { AddEditProductComponent } from '../product/add-edit-product/add-edit-product.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CenterModalComponent } from 'src/app/modals/center-modal/center-modal.component';
+import { AdvanceSearchComponent } from './advance-search/advance-search.component';
+
 const routes:Routes=[
-  {
-    path:'',
-    component:OrderDetailsComponent
-  
-  }
+
+  {path:'',component:OrderDetailsComponent}
+
   ]
 
 @NgModule({
   declarations: [
-     OrderDetailsComponent,
+     OrderDetailsComponent
    
   ],
   imports: [
@@ -34,7 +36,8 @@ const routes:Routes=[
   entryComponents:[
     SideModalComponent,
     AddEditOrderComponent,
-    CenterModalComponent
+    CenterModalComponent,
+    AdvanceSearchComponent
   ]
 })
 export class OrderModule { }
