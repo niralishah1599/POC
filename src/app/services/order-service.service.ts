@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase} from '@angular/fire/database';
+import { BehaviorSubject,Observable } from 'rxjs';
 import { Iorder } from 'src/app/models/order';
 
 @Injectable({
@@ -8,7 +8,20 @@ import { Iorder } from 'src/app/models/order';
 })
 export class OrderServiceService {
 
+  private filteredData: BehaviorSubject<Iorder[]> = new BehaviorSubject([]);
+  
   constructor(private angularFireDatabase:AngularFireDatabase) { }
+
+    getFilteredObs(): Observable<Iorder[]> {
+        return this.filteredData.asObservable();
+    }
+
+
+    filterdData(filterdObj:Iorder[])
+    {
+      this.filteredData.next(filterdObj);
+
+    }
 
   getAllData(): Observable<Iorder[]> {
     return this.angularFireDatabase.list<Iorder>('/orders').valueChanges()
@@ -35,4 +48,6 @@ export class OrderServiceService {
     return property
   }
 
+ 
+ 
 }

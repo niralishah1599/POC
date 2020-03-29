@@ -6,6 +6,9 @@ import { AddEditProductComponent } from '../pre-landing/product/add-edit-product
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CenterModalComponent } from '../modals/center-modal/center-modal.component';
 import { AdvanceSearchComponent } from '../pre-landing/order/advance-search/advance-search.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
@@ -18,9 +21,10 @@ import { AdvanceSearchComponent } from '../pre-landing/order/advance-search/adva
     AdvanceSearchComponent
   ],
   imports: [
+    NgbModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     SideModalComponent,
@@ -28,6 +32,9 @@ import { AdvanceSearchComponent } from '../pre-landing/order/advance-search/adva
     AddEditProductComponent,
     AdvanceSearchComponent,
     CenterModalComponent
+    ],
+    bootstrap:[
+      AdvanceSearchComponent
     ]
   
 })

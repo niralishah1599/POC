@@ -1,10 +1,12 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit ,Input, Output} from '@angular/core';
 import {OrderServiceService} from "src/app/services/order-service.service";
+import {ExcelService} from "src/app/services/excel.service";
 import {Iorder}from "src/app/models/order";
 import {orderFilter}  from "src/app/pipes/orderFilter.pipe";
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.component';
 import {CenterModalComponent} from "src/app/modals/center-modal/center-modal.component";
+
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
@@ -16,17 +18,25 @@ export class OrderDetailsComponent implements OnInit {
   @Input() page = 1;
   @Input() pageSize = 10;
   @Input() collectionSize: number = 100;
+ 
   content:string="addOrder";
   searchItem:string;
   filteredOrders:Iorder[] = [];
   advanceSearchContent:string="advanceSearch";
  
-  constructor(private _orderService:OrderServiceService,private _orderFilter:orderFilter,private modalService:NgbModal) { }
+  constructor(private _orderService:OrderServiceService,private _orderFilter:orderFilter,private modalService:NgbModal,private _excelService:ExcelService) { }
 
   ngOnInit() {
-    this.getAllOrderData()
+    this.getAllOrderData();
+    this._orderService.getFilteredObs().subscribe(filterData =>{ 
+      this.orders=filterData;
+      this.collectionSize=this.orders.length;
+    });
+   
   }
 
+
+ 
   getAllOrderData()
   {
   this._orderService.getAllData().subscribe(data=>
@@ -64,4 +74,12 @@ export class OrderDetailsComponent implements OnInit {
     modalSearchRef.componentInstance.advanceSearchcontent=advanceSearchcontent;
   }
 
-}
+  exportToExcel()
+  {
+    let fileName = 'orders.csv';
+    let columnNames = ["Id", "Customer Name", "Shipper", "order Date", "Order Total"];
+    this._excelService.exportToExcel(fileName, columnNames, this.orders.slice((this.page - 1)*this.pageSize, (this.page - 1)*this.pageSize + this.pageSize))
+    }
+  }
+
+

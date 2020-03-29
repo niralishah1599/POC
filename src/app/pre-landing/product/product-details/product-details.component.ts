@@ -11,7 +11,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 //service
 import {ProductService} from 'src/app/services/product.service';
-
+import {ExcelService} from 'src/app/services/excel.service';
 
 //component
 import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.component';
@@ -45,7 +45,7 @@ export class ProductDetailsComponent implements OnInit {
   selectedSupplier: string;
   selectedCategory: string;
   content:string="addProduct";
-  constructor(public _productService: ProductService,public location:Location, public _filterPipe: FilterPipe, private angularFireDatabase: AngularFireDatabase,private modalService:NgbModal) { }
+  constructor(public _productService: ProductService,public location:Location, public _filterPipe: FilterPipe, private angularFireDatabase: AngularFireDatabase,private modalService:NgbModal,private _excelService:ExcelService) { }
 
   ngOnInit() {
     this.getProducts()
@@ -101,12 +101,11 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   
-  exportAsXLSX()
+  exportToExcel()
   {
-    // let fileName="products";
-    // this.excelService.downloadFile(this.products,fileName);
-  }
-
-    
+    let fileName = 'products.csv';
+    let columnNames = ["productId", "Product Name", "Supplier", "Category", "Price","discounted","discount"];
+    this._excelService.exportToExcel(fileName, columnNames, this.products.slice((this.page - 1)*this.pageSize, (this.page - 1)*this.pageSize + this.pageSize))
+    }    
   
 }

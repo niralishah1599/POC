@@ -6,6 +6,7 @@ import {NgbModule,NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {Routes, RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 //component
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.component';

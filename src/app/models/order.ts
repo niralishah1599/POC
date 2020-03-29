@@ -4,6 +4,6 @@ export interface Iorder{
     shipper:string,
     address:string,
     city:string,
-    orderDate:Date,
+    orderDate:string,
     orderTotal:number
 }
