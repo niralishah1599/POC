@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 //angularfire
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
+//router
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class AuthService {
     private router:Router
   ) { }
 
-
+  //registration
   register(formData)
   {
     
@@ -37,6 +38,7 @@ export class AuthService {
   
   }
 
+  //login
   login(formData)
   {
     
@@ -44,12 +46,13 @@ export class AuthService {
     this.angularFireAuth.auth.signInWithEmailAndPassword(
       formData.value.email,formData.value.password
     ).then(()=>{
-    this.router.navigateByUrl('/pre-landing/product')
+    this.router.navigateByUrl('/pre-landing/dashboard')
     }).catch((err)=>{
     alert(err['message'])
   })
   }
 
+  //forgetPassword
   forgetPassword(formData)
   {
   

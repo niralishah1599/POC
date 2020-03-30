@@ -13,6 +13,7 @@ export class CenterModalComponent implements OnInit {
 
   @Input() public product:Iproduct;
   @Input() public order:Iorder;
+  
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {

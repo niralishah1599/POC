@@ -3,22 +3,20 @@
     <button class="navbar-toggler" type="button"  (click)="toogleNavbar()" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" ></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText" [ngClass]="{'show':navbarOpen}">
+    <div class="collapse navbar-collapse" [ngClass]="{'show':navbarOpen}">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link"  [routerLink]="['/pre-landing/dashboard']" >Dashboard <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/pre-landing/product']" >Product <!--<span class="sr-only">(current)</span>--></a>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/pre-landing/dashboard']">Dashboard </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/pre-landing/order']" >Order <!--<span class="sr-only">(current)</span>--></a>
+          <a class="nav-link" [routerLink]="['/pre-landing/product']">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/pre-landing/order']">Order</a>
         </li>
        
       </ul>
-      <span class="navbar-text">
-       <i class="fa fa-user fa-2x" id="user" (click)="showUserProfile()"></i>
-      </span>
+     
       <div class="form-group">
         <button type="submit" name="submit" class="btn btn-danger btn-md" (click)="logout()"value="logout">Logout</button>
     </div>

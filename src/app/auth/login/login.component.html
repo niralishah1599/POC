@@ -1,31 +1,31 @@
-
- <div class="login">
+<div class="login">
     <div class="container">
         <div  class="login-row  row justify-content-center align-items-center">
             <div  class="login-column col-md-6">
                 <div class="login-box col-md-12">
                     <form class="login-form  form"  #form="ngForm" (ngSubmit)="login(form)">
                         <h3 class="text-center text-info">Login</h3>
+                        <!--email-->
                         <div class="form-group">
                             <label for="username" class="text-info">Email:</label><br>
                             <input type="text" class="form-control" name="email" id="email" #email="ngModel"
-                            [(ngModel)]="user.email"  email   required />
+                            [(ngModel)]="user.email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"    required />
                         </div>
                         <div *ngIf="!email.valid && (email.touch || email.dirty)">
                             <div *ngIf="email.errors.required" class="alert alert-danger">
-                                email is required
+                                Email is required
                                 
                             </div>
-                            <div *ngIf="email.errors.email" class="alert alert-danger">
-                                email must be valid
-                            </div>
+                            <div *ngIf="email.errors?.pattern" class="alert alert-danger">
+                                Email must be valid
+                             </div>
                          </div>
+                         <!--password-->
                         <div class="form-group">
                             <label for="password" class="text-info">Password:</label><br>
                             <input type="password" class="form-control" id="password" minlength="6"
-                                    #password="ngModel" [(ngModel)]="user.password" name="password"  required />
-                                    <!-- appNoContainSpace="ngModel" -->
-                                </div>
+                                    #password="ngModel" [(ngModel)]="user.password" name="password"  appNoContainSpace="ngModel"  required />
+                         </div>
                         <div *ngIf="password.invalid && (password.touched || password.dirty)">
                             <div *ngIf="password.errors.required" class="alert alert-danger">
                                 password is required

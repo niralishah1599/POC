@@ -1,65 +1,72 @@
 <div class="body">
-    <div class="container">
-      <div class="row">
-        <div class="main col-xs-3">
-          <div class="input-group"  style="margin-top:15px">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-search"></i></span>
-            </div>
-            <br>
-            <input type="text" class="form-control" placeholder="Id/CustomerName" [(ngModel)]="searchItem"
-            (input)="filterOrder($event)"> 
+  <div class="container">
+    <div class="row">
+
+      <div class="main col-xs-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
           </div>
-        </div>
-       
-        <div class="col-xs-4 pt-3" style="margin-left:420px">
-          <button type="button" class="btn btn-primary" (click)="openSideModal(content);" >
-            Add
-          </button>
-  
-        </div>&nbsp;
-        <div class="col-xs-4 pt-3">
-          <button type="submit" class="btn btn-success"  style="float:right;" (click)="openAdvanceSearchSideModal(advanceSearchContent)">
-            Advance Search</button>
-        </div>&nbsp;
-        <div class="col-xs-4 pt-3">
-        <button type="button" class="btn btn-info" (click)="exportToExcel()" style="float: right;">
-          Excel
-        </button>
-        </div>
-       <br>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">OrderId</th>
-              <th scope="col">CustomerName</th>
-              <th scope="col">Shipper</th>
-              <th scope="col">OrderDate</th>
-              <th scope="col">OrderTotal</th>
-              <th scope="col">Edit</th>
-            </tr>
-          </thead>
-                 
-          <tbody *ngIf="orders.length>0; else elseBlock">
-            <tr *ngFor="let order of orders| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
-              <td>{{order.id}}</td>
-              <td>{{order.customerName}}</td>
-              <td>{{order.shipper}}</td>
-              <td>{{order.orderDate}}</td>
-               <td>{{order.orderTotal}}</td>
-              <td>
-                <button type="button" class="btn btn-primary" (click)="openCenterModal(order)">
-                  Edit
-                </button>
-              </td>
-            </tr>
-  
-          </tbody>
-          <ng-template #elseBlock>Content to render when condition is false.</ng-template>
-        </table>
-        <div class="d-flex justify-content-between p-2">
-          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize">
-          </ngb-pagination>
+          <br>
+          <input type="text" class="form-control" placeholder="Id/CustomerName" [(ngModel)]="searchItem"
+            (input)="filterOrder($event)">
         </div>
       </div>
+
+      <div class="add col-xs-4 pt-3">
+        <button type="button" class="btn btn-primary" (click)="openSideModal(content);">
+          Add
+        </button>
+
+      </div>&nbsp;
+      <div class="search col-xs-4 pt-3">
+        <button type="submit" class="btn btn-info" (click)="openAdvanceSearchSideModal(advanceSearchContent)">
+          Advance Search</button>
+      </div>&nbsp;
+      <div class="excel col-xs-4 pt-3">
+        <button type="button" class="btn btn-success" (click)="exportToExcel()">
+          Export To Excel
+        </button>
+      </div>
+      <br>
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">OrderId</th>
+            <th scope="col">CustomerName</th>
+            <th scope="col">Shipper</th>
+            <th scope="col">OrderDate</th>
+            <th scope="col">OrderTotal</th>
+            <th scope="col">Edit</th>
+          </tr>
+        </thead>
+
+        <div *ngIf="showSpinner">
+          <app-loader></app-loader>
+        </div>
+
+        <tbody *ngIf="orders.length>0">
+          <tr *ngFor="let order of orders| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
+            <td>{{order.id}}</td>
+            <td>{{order.customerName}}</td>
+            <td>{{order.shipper}}</td>
+            <td>{{order.orderDate}}</td>
+            <td>{{order.orderTotal}}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="openCenterModal(order)">
+                Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="this.collectionSize==0&&!showSpinner">
+        <h3>Oops! No DATA fOUND</h3>
+      </div>
+      <div class="d-flex justify-content-between p-2" *ngIf="orders.length>0">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize">
+        </ngb-pagination>
+      </div>
     </div>
+  </div>

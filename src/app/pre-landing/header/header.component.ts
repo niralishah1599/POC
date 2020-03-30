@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+//router
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,20 +10,21 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   navbarOpen:boolean=false;
-  showProfile:boolean=false;
   localStorage=window.localStorage;
-  email:string;
+ 
   
-  constructor(private angularFireDatabase:AngularFireDatabase,private router:Router) { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
-
+ 
+  //perform toogle
   toogleNavbar()
   {
     this.navbarOpen=!this.navbarOpen
   }
 
+  //logout
   logout()
   {
     
@@ -31,13 +32,5 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('auth/login')
   }
 
-  showUserProfile()
-  {
-   this.showProfile=true;
-   this.angularFireDatabase.object('/users/'+this.localStorage.getItem('uid')+'/userDetails').valueChanges().
-   subscribe(data=>{
-    console.log(data['email'])
-   })
-  }
-
+  
 }

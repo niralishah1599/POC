@@ -1,11 +1,57 @@
-fieldset {
+.body{
+  .container{
+    form{
+      .row{
+         display: inline-flex;
+         .shipperName{
+          margin-top:3px;
+         }
+         .customerName {
+          margin-top:3px;
+         }
+      }
+    }
+  }
+}
 
-    div{ 
-        margin-bottom: 10px; 
+fieldset {
+  background:ghostwhite;
+  padding:7px 7px 7px 7px;
+  legend{
+    padding-top:5px;
+    font-size: 18px;
+  }
+    .From{ 
+        margin-bottom: 8px; 
+        .label{
+          margin-right:4px;
+          padding:7px 3px 3px 3px;
+        }
+        
+          .input-group-addon{
+            padding: 3px 5px 5px 5px;
+            .fa{
+              font-size:32px;
+            }
+          }
+        
+      
       }
-      label{ 
-        display: inline-block; 
-        width: 120px; 
+      .To{ 
+        margin-bottom: 8px; 
+        .label{
+         
+          margin-right:25px;
+          padding:7px 3px 3px 3px;
+        }
+        .input-group-addon{
+          padding: 3px 5px 5px 5px;
+          .fa{
+            font-size:32px;
+          }
+        }
+      
       }
+   
  
 }

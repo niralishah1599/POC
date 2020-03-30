@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+//interface
 import {Iuser} from 'src/app/models/user';
-import {Router} from '@angular/router'
-//Services
+//Service
 import {AuthService} from 'src/app/services/auth.service';
 
 
@@ -15,15 +15,14 @@ export class RegisterComponent implements OnInit {
 
   user:Iuser={email:"",password:""}
   
-  
-  constructor(private authService:AuthService,private router:Router) { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit() {
   }
 
+  //register
   register(formData)
   {
     this.authService.register(formData)
-    
   }
 }

@@ -14,13 +14,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 
 
+
 //firebase
 export const firebaseConfig = environment.firebaseConfig
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent
   
   ],
   imports: [

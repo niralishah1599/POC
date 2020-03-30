@@ -1,27 +1,22 @@
-
-    <div class="register">
-
+<div class="register">
         <div class="container">
             <div  class="register-row row justify-content-center align-items-center">
                 <div class="register-column col-md-6">
                     <div class="register-box col-md-12">
                         <form class="register-form form" action="" method="post" (ngSubmit)="register(form)"
                             #form="ngForm">
-
                             <h3 class="text-center text-info">Registration</h3>
-                           
-                            <!--email-->
+                             <!--email-->
                             <div class="form-group">
                                 <label for="EmailId" class="text-info">EmailId:</label><br>
                                 <input type="text" class="form-control" name="email" id="email" #email="ngModel"
-                                    [(ngModel)]="user.email"  email   required />
+                                    [(ngModel)]="user.email"  pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"  required />
                             </div>
                             <div *ngIf="!email.valid && (email.touch || email.dirty)">
                                 <div *ngIf="email.errors.required" class="alert alert-danger">
                                     email is required
-                                    
-                                </div>
-                                <div *ngIf="email.errors.email" class="alert alert-danger">
+                                    </div>
+                                <div *ngIf="email.errors?.pattern" class="alert alert-danger">
                                     email must be valid
                                 </div>
                              </div>
@@ -48,7 +43,7 @@
                                 <label for="password" class="text-info">Confirm Password:</label><br>
                                 <input type="password" class="form-control" id="confirmPassword" minlength="6"
                                     #confirmPassword="ngModel" [(ngModel)]="confirmPasswordText" name="confirmPassword"
-                                    required />
+                                    appNoContainSpace="ngModel" required />
                             </div>
                             <div *ngIf="confirmPassword.invalid &&
                                 (confirmPassword.touched || confirmPassword.dirty)

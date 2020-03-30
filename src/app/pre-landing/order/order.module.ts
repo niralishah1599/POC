@@ -14,7 +14,8 @@ import { AddEditOrderComponent } from './add-edit-order/add-edit-order.component
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CenterModalComponent } from 'src/app/modals/center-modal/center-modal.component';
 import { AdvanceSearchComponent } from './advance-search/advance-search.component';
-//import {  } from 'src/app/pre-landing/order/advance-search/advance-search.component';
+
+
 const routes:Routes=[
 
   {path:'',component:OrderDetailsComponent}
@@ -23,14 +24,13 @@ const routes:Routes=[
 
 @NgModule({
   declarations: [
-     OrderDetailsComponent
-   
+     OrderDetailsComponent,
+    
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-   
     SharedModule,
     NgbPaginationModule,
     NgbModule,

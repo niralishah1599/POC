@@ -1,9 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+//validators
 import { Validators, FormBuilder } from '@angular/forms';
+//firedatabase
 import { AngularFireDatabase } from 'angularfire2/database';
+//interface
 import { Iorder } from "src/app/models/order";
+//service
 import { OrderServiceService } from "src/app/services/order-service.service";
+//modal
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-edit-order',
@@ -18,14 +23,13 @@ export class AddEditOrderComponent implements OnInit {
 
   constructor(private _orderService: OrderServiceService, private activeModal: NgbActiveModal, private fb: FormBuilder, private angularFireDatabase: AngularFireDatabase) { }
 
-
   orderForm = this.fb.group({
     customerName: ["", Validators.required],
     address: ["", Validators.required],
     city: ["", Validators.required],
     shipper: ["", Validators.required],
     orderDate: ["", Validators.required],
-    orderTotal: [""]
+    orderTotal: ["",[Validators.required,Validators.min(1)]]
   })
 
   ngOnInit() {
@@ -44,19 +48,17 @@ export class AddEditOrderComponent implements OnInit {
       })
    }
  }
-
+ 
+  //toGetOrderData
   getOrders() {
         this._orderService.getAllData().subscribe(data => {
           this.orderLength = data.length;
     })
 }
 
-
+  //SubmitOrderData
   onSubmit() {
     if (this.editOrder) {
-
-      console.log('update')
-
       let data = {
         id: this.editOrder.id,
         customerName: this.orderForm.controls['customerName'].value,
@@ -66,11 +68,11 @@ export class AddEditOrderComponent implements OnInit {
         orderDate: this.orderForm.controls['orderDate'].value,
         orderTotal: this.orderForm.controls['orderTotal'].value,
       }
+      this.activeModal.close();
       this._orderService.updateOrder(data);
     }
 
     else {
-      console.log('add');
       let sub = this.angularFireDatabase.list('/orders').valueChanges().subscribe(orders => {
         this.data =
         {
@@ -84,7 +86,8 @@ export class AddEditOrderComponent implements OnInit {
         }
 
         this._orderService.addOrder(this.data);
-        sub.unsubscribe()
+        sub.unsubscribe();
+        this.activeModal.close();
       });
     }
   }

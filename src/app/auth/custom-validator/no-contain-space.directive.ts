@@ -1,5 +1,5 @@
 import { Directive , Input} from '@angular/core';
-import {AbstractControl,NG_VALIDATORS,Validator, Validators} from '@angular/forms';
+import {AbstractControl,NG_VALIDATORS,Validators} from '@angular/forms';
 
 @Directive({
   selector: '[appNoContainSpace]',
@@ -13,13 +13,15 @@ export class NoContainSpaceDirective implements Validators{
 
   validate(control:AbstractControl):{[key:string]:any}|null
   {
-    const notAllowed = new RegExp(this.spaceNotAllowed).test(control.value);
-
-      if((control.value as string).indexOf(' ') >= 0){
-      console.log('space');
-      return {spaceNotAllowed: true}
+    // const notAllowed = new RegExp(this.spaceNotAllowed).test(control.value);
+    if (control && control.value && !control.value.replace(/\s/g, '').length) {
+      control.setValue('');
+   
+      return { spaceNotAllowed: true }
   }
-  
+  else {
+      return null;
   }
-
+  }
+ 
 }

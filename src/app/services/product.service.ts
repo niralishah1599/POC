@@ -15,25 +15,22 @@ export class ProductService {
   productRef: AngularFireList<Iproduct> = null;
 
   constructor(
-    private angularFireDatabase: AngularFireDatabase,
-    private angularFireAuth: AngularFireAuth) {
+    private angularFireDatabase: AngularFireDatabase) {
     this.productRef = this.angularFireDatabase.list(this.url);
   }
-
-  addProduct(product: Iproduct) {
-    this.angularFireDatabase.object('/products/' + (product.id - 1)).set(product);
-  }
-
-  updateProduct(product) {
-    this.angularFireDatabase.object('/products/' + (product.id - 1)).set(product)
-  }
-
-
-
+  //toGetProductData
   getAllData(): Observable<Iproduct[]> {
     return this.angularFireDatabase.list<Iproduct>('/products').valueChanges()
   }
-
+  //addProduct
+  addProduct(product: Iproduct) {
+    this.angularFireDatabase.object('/products/' + (product.id - 1)).set(product);
+  }
+  //updateProduct
+  updateProduct(product) {
+    this.angularFireDatabase.object('/products/' + (product.id - 1)).set(product)
+  }
+ //toGetSuppliersOrCategory
   getSuppliersOrCategories(property) {
     property = property.filter((data, index) => {
       if (index != 0) {
@@ -46,9 +43,5 @@ export class ProductService {
     })
     return property
   }
-
-
-
-
 }
 

@@ -2,26 +2,60 @@
     <div class="form-group">
      <label for="Name">CustomerName</label>
      <input type="text" class="form-control" formControlName="customerName">
+     <div *ngIf="!orderForm.controls['customerName'].valid && (orderForm.controls['customerName'].touch || orderForm.controls['customerName'].dirty)">
+        <div *ngIf="orderForm.controls['customerName'].errors.required" class="alert alert-danger">
+            Customer name is required
+        </div>
+     </div>
     </div>
     <div class="form-group">
         <label for="Name">Address</label>
         <input type="text" class="form-control" formControlName="address">
+        <div *ngIf="!orderForm.controls['address'].valid && (orderForm.controls['address'].touch || orderForm.controls['address'].dirty)">
+          <div *ngIf="orderForm.controls['address'].errors.required" class="alert alert-danger">
+              Address is required
+          </div>
        </div>
+    </div>
     <div class="form-group">
-     <label for="Name">City</label>
-     <input type="text" class="form-control" formControlName="city">
+        <label for="Name">City</label>
+        <input type="text" class="form-control" formControlName="city">
+        <div *ngIf="!orderForm.controls['city'].valid && (orderForm.controls['city'].touch || orderForm.controls['city'].dirty)">
+          <div *ngIf="orderForm.controls['city'].errors.required" class="alert alert-danger">
+              City is required
+          </div>
+       </div>
     </div>
     <div class="form-group">
      <label for="Name">Shipper</label>
      <input type="text" class="form-control" formControlName="shipper">
+     <div *ngIf="!orderForm.controls['shipper'].valid && (orderForm.controls['shipper'].touch || orderForm.controls['shipper'].dirty)">
+        <div *ngIf="orderForm.controls['shipper'].errors.required" class="alert alert-danger">
+            Shipper name is required
+        </div>
+     </div>
     </div>
     <div class="form-group">
      <label for="Name">OrderDate</label>
      <input type="date" class="form-control" data-date="" data-date-format="YYYY MM DD" data-date-format="YYYY MM DD" formControlName="orderDate">
+     <div *ngIf="!orderForm.controls['orderDate'].valid && (orderForm.controls['orderDate'].touch || orderForm.controls['orderDate'].dirty)">
+        <div *ngIf="orderForm.controls['orderDate'].errors.required" class="alert alert-danger">
+            Customer name is required
+        </div>
+     </div>
     </div>
     <div class="form-group">
         <label for="Name">OrderTotal</label>
-        <input type="text" class="form-control" formControlName="orderTotal">
+        <input type="number" class="form-control" formControlName="orderTotal">
+        <div *ngIf="!orderForm.controls['orderTotal'].valid && (orderForm.controls['orderTotal'].touch || orderForm.controls['orderTotal'].dirty)">
+          <div *ngIf="orderForm.controls['orderTotal'].errors.required" class="alert alert-danger">
+              Amount is required
+          </div>
+          <div *ngIf="orderForm.controls['orderTotal'].errors.min" class="alert alert-danger">
+            Value must be more than 0
+        </div>
+       </div>
+
     </div>
     <br>
   <button type="submit" class="btn btn-success" [disabled]="!orderForm.valid">

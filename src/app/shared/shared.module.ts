@@ -7,7 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CenterModalComponent } from '../modals/center-modal/center-modal.component';
 import { AdvanceSearchComponent } from '../pre-landing/order/advance-search/advance-search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { LoaderComponent } from '../core/loader/loader.component';
 
 
 
@@ -18,7 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AddEditOrderComponent,
     AddEditProductComponent,
     CenterModalComponent,
-    AdvanceSearchComponent
+    AdvanceSearchComponent,
+    LoaderComponent
   ],
   imports: [
     NgbModule,
@@ -31,7 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AddEditOrderComponent,
     AddEditProductComponent,
     AdvanceSearchComponent,
-    CenterModalComponent
+    CenterModalComponent,
+    LoaderComponent
     ],
     bootstrap:[
       AdvanceSearchComponent

@@ -2,18 +2,45 @@
      <div class="form-group">
       <label for="Name">Name</label>
       <input type="text" class="form-control" formControlName="name">
+      <div *ngIf="!productForm.controls['name'].valid &&
+      (productForm.controls['name'].touch ||
+      productForm.controls['name'].dirty)">
+          <div *ngIf="productForm.controls['name'].errors.required" class="alert alert-danger">
+             Product name is required
+          </div>
+      </div>
+
      </div>
      <div class="form-group">
-      <label for="Name">supplier</label>
+      <label for="Name">Supplier</label>
       <input type="text" class="form-control" formControlName="supplier">
+      <div *ngIf="!productForm.controls['supplier'].valid && (productForm.controls['supplier'].touch || productForm.controls['supplier'].dirty)">
+          <div *ngIf="productForm.controls['supplier'].errors.required" class="alert alert-danger">
+              Supplier name is required
+          </div>
+      </div>
+
      </div>
      <div class="form-group">
       <label for="Name">Category</label>
       <input type="text" class="form-control" formControlName="category">
+      <div *ngIf="!productForm.controls['category'].valid && (productForm.controls['category'].touch || productForm.controls['category'].dirty)">
+          <div *ngIf="productForm.controls['category'].errors.required" class="alert alert-danger">
+              Category name is required
+          </div>
+      </div>
      </div>
      <div class="form-group">
       <label for="Name">Price</label>
-      <input type="text" class="form-control" formControlName="price">
+      <input type="number" class="form-control" formControlName="price">
+      <div *ngIf="!productForm.controls['price'].valid && (productForm.controls['price'].touch || productForm.controls['price'].dirty)">
+            <div *ngIf="productForm.controls['price'].errors.required" class="alert alert-danger">
+            Price  is required
+            </div>
+            <div *ngIf="productForm.controls['price'].errors?.min" class="alert alert-danger">
+              Value Must be More than 0
+          </div>
+       </div>
      </div>
      
     
@@ -25,16 +52,21 @@
         <input id="No" type="radio" value="No" name="discounted" (change)="isShowDiscount($event)"
           formControlName="discounted">
         <label for="No">No</label>
-      
-      </div>
+       </div>
+
      <div *ngIf="showDiscount">
       <div class="form-group">
-      <label>Discount<input type="text" class="form-control" formControlName="discount"></label>
+      <label>Discount<input type="number" class="form-control" formControlName="discount"></label>
+     
+   
+     <div *ngIf="productForm.controls['discount'].errors?.min" class="alert alert-danger">
+        Value Must be More than 0
+    </div>
+ 
     </div>
     </div>
     <br>
-    <!-- // -->
     <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">
-      Submit
+      Submit 
     </button>
-  </form>
+</form>

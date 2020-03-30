@@ -12,9 +12,9 @@ export class ForgetPasswordComponent implements OnInit {
   
   constructor(private router:Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  //redirect to login
   goBackToLogin()
   {
     this.router.navigateByUrl('/auth/login')

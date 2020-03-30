@@ -16,7 +16,7 @@ export class SideModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
-    console.log(this.advanceSearchcontent);
+ 
     if(this.content=="addOrder")
     {
       this.order=true;
@@ -25,8 +25,7 @@ export class SideModalComponent implements OnInit {
     {
       this.product=true;
     }
-   
-   if(this.advanceSearchcontent=="advanceSearch")
+    if(this.advanceSearchcontent=="advanceSearch")
    {
      this.search=true;
    }

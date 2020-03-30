@@ -5,8 +5,9 @@ import {Routes, RouterModule} from '@angular/router';
 
 //component
 import { PreLandingComponent } from './pre-landing.component';
-import { DashboardComponent } from './header/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
+import { CanActivateGuard } from '../guard/can-activate.guard';
 
 const routes:Routes=[
   {
@@ -20,11 +21,13 @@ const routes:Routes=[
       },
       {
         path:'dashboard',
-        component:DashboardComponent
+        component:DashboardComponent,
+        canActivate:[CanActivateGuard]
       },
       {
         path:'product',
         loadChildren:() => import('./product/product.module').then(pr=>pr.ProductModule)
+      
       },
       {
         path:'order',
@@ -38,8 +41,7 @@ const routes:Routes=[
   declarations: [
     HeaderComponent,
     DashboardComponent,
-    PreLandingComponent,
-  
+    PreLandingComponent
   ],
   imports: [
     CommonModule,

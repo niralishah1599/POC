@@ -1,72 +1,73 @@
 <div class="body">
     <div class="container">
-    <form [formGroup]="advanceSearchForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-    
-    <div class="col-xs-4 pt-3" style="margin-top:5px">
-    
-    <div class="dropdown">
-    <label>Shipper </label>
-    <select id="shipper" class="btn btn-light" multiple formControlName="selectedShippers">
-    <option *ngFor="let shipper of shipper" [ngValue]="shipper" (change)="selectShipper($event)">
-    {{shipper}}
-    </option>
-    </select>
+        <form [formGroup]="advanceSearchForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+               <div class="shipperName col-md-6">
+                   <div class="dropdown">
+                        <label>Shipper Name</label>
+                        <select id="shipper" class="btn btn-light" multiple formControlName="selectedShippers">
+                            <option *ngFor="let shipper of shipper" [ngValue]="shipper"
+                                (change)="selectShipper($event)">
+                                {{shipper}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="customerName col-md-6">
+                   <div class="dropdown">
+                        <label>CustomerName </label>
+                        <select id="customerName" class="btn btn-light" multiple
+                            formControlName="selectedCustomerNames">
+                             <option *ngFor="let name of customerName" [ngValue]="name"
+                                (change)="selectCustomerName($event)">
+                                {{name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <fieldset>
+                <legend>Order Date</legend>
+
+                <div class="From input-group">
+                    <span class="label">From</span>
+                    <input class="form-control" type="text" [(ngModel)]="Model1" placeholder="yyyy-mm-dd"
+                        name="dp1" ngbDatepicker #d1="ngbDatepicker" formControlName="selectedFromDate" required>
+                    <div class="input-group-addon" (click)="d1.toggle()">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="To input-group">
+                    <span class="label">To</span>
+                    <input class="form-control" [(ngModel)]="Model2" formControlName="selectedToDate"
+                        placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #d2="ngbDatepicker" required>
+                    <div class="input-group-addon" (click)="d2.toggle()">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                   </div>
+                </div>
+            </fieldset>
+           <fieldset>
+                <legend>Order Total</legend>
+                <div class="From input-group">
+                    <span class="label">From</span>
+                    <input class="form-control" type="number" formControlName="selectedFromAmount"
+                        placeholder="Enter Minimum Price" required>
+                </div>
+
+                <div class="To input-group">
+                    <span class="label">To</span>
+                    <input class="form-control" type="number" formControlName="selectedToAmount"
+                        placeholder="Enter Maximum Price" required>
+
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-success">
+                Submit
+            </button>
+        </form>
     </div>
-    </div>&nbsp;
-    <div class="col-xs-4 pt-3" style="margin-top:5px">
-    
-    <div class="dropdown">
-    <label>CustomerName </label>
-    <select id="customerName" class="btn btn-light" multiple formControlName="selectedCustomerNames">
-    <!-- <option value="Category">Category</option> -->
-    <option *ngFor="let name of customerName" [ngValue]="name" (change)="selectCustomerName($event)">
-    {{name}}
-    </option>
-    </select>
-    </div>
-    </div>
-    
-    </div>
-    
-    <fieldset style="background:ghostwhite">
-    <legend style="padding:15px 10px;font-size: x-large;">Order Date:</legend>
-    
-    <div class="input-group">
-    From:<input class="form-control" type="text" [(ngModel)]="Model1" placeholder="yyyy-mm-dd" name="dp1" ngbDatepicker
-    #d1="ngbDatepicker" formControlName="selectedFromDate" required>
-    <div class="input-group-addon" (click)="d1.toggle()">
-    <i class="fa fa-calendar" aria-hidden="true" style="font-size:30px;"></i>
-    </div>
-    </div>
-    
-    <div class="input-group">
-    To:<input class="form-control" [(ngModel)]="Model2" formControlName="selectedToDate" placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #d2="ngbDatepicker"
-    required>
-    <div class="input-group-addon" (click)="d2.toggle()">
-    <i class="fa fa-calendar" aria-hidden="true" style="font-size:30px;"></i>
-    
-    </div>
-    </div>
-    </fieldset>
-    
-    
-    
-    <fieldset style="background:ghostwhite">
-    <legend style="padding:15px 10px;font-size: x-large;">Order Total:</legend>
-    <div class="input-group">
-    From: <input class="form-control" type="number" formControlName="selectedFromAmount" placeholder="Enter Start Price" required>
-    </div>
-    
-    <div class="input-group">
-    To:<input class="form-control" type="number" formControlName="selectedToAmount" placeholder="Enter End Price" required>
-    
-    </div>
-    </fieldset>
-    
-    <button type="submit" class="btn btn-success">
-    Submit
-    </button>
-    </form>
-    </div>
-    </div>
+</div>

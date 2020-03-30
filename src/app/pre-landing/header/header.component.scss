@@ -1,0 +1,15 @@
+.collapse{
+    .navbar-nav{
+        .nav-item{
+            .nav-link{
+               color: black;
+            }
+            .nav-link:hover{
+                font-size: large;
+                background-color: #17a2b8;
+                color:white;
+                border-radius: 3px;
+            }
+        }
+    }
+}

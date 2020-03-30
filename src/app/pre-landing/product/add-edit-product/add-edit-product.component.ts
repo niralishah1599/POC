@@ -1,9 +1,14 @@
-import { Component, OnInit , Input } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
-import {Iproduct} from 'src/app/models/product';
+import { Component, OnInit, Input } from '@angular/core';
+//validator
+import { FormBuilder, Validators } from '@angular/forms';
+//interface
+import { Iproduct } from 'src/app/models/product';
+//service
 import { ProductService } from 'src/app/services/product.service';
+//database
 import { AngularFireDatabase } from 'angularfire2/database';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+//modal
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -13,7 +18,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 export class AddEditProductComponent implements OnInit {
 
-  constructor(private _productService: ProductService, private fb: FormBuilder, private angularFireDatabase: AngularFireDatabase,private activeModal:NgbActiveModal) { }
+  constructor(private _productService: ProductService, private fb: FormBuilder, private angularFireDatabase: AngularFireDatabase, public activeModal: NgbActiveModal) { }
 
   @Input() public editProduct: Iproduct;
 
@@ -28,18 +33,17 @@ export class AddEditProductComponent implements OnInit {
   productForm = this.fb.group({
     name: ["", Validators.required],
     supplier: ["", Validators.required],
-    price: ["", Validators.required],
+    price: [0, [Validators.required, Validators.min(1)]],
     category: ["", Validators.required],
     discounted: ["", Validators.required],
-    discount: [""]
+    discount: [, [Validators.min(0)]]
+    
   })
   ngOnInit() {
     this.getProducts();
-    
-
 
     if (this.editProduct) {
-      console.log('hello');
+
       this.productForm.patchValue({
         id: this.editProduct.id,
         name: this.editProduct.name,
@@ -49,19 +53,18 @@ export class AddEditProductComponent implements OnInit {
         discounted: this.editProduct.discounted,
         discount: this.editProduct.discount
       })
-      if(this.editProduct.discounted=='No')
-      {
-       this.showDiscount=false
+      if (this.editProduct.discounted == 'No') {
+        this.showDiscount = false
       }
 
     }
     else {
-     this.showDiscount=false;
+      this.showDiscount = false;
     }
 
   }
 
-
+  //toGetProductData
   getProducts() {
     this._productService.getAllData().subscribe(data => {
       this.productLength = data.length
@@ -72,7 +75,7 @@ export class AddEditProductComponent implements OnInit {
   }
 
 
-
+  //forDiscount
   isShowDiscount(event) {
     console.log(event.target.value);
     if (event.target.value == 'Yes') {
@@ -91,12 +94,10 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
+  //toSubmitProductData
   onSubmit() {
 
     if (this.editProduct) {
-
-      console.log('update')
-
       let data = {
         id: this.editProduct.id,
         name: this.productForm.controls['name'].value,
@@ -106,12 +107,12 @@ export class AddEditProductComponent implements OnInit {
         discount: this.productForm.controls['discount'].value,
         discounted: this.productForm.controls['discounted'].value,
       }
+      this.activeModal.close();
       this._productService.updateProduct(data);
 
 
     }
     else {
-     console.log('add');
       let sub = this.angularFireDatabase.list('/products').valueChanges().subscribe(prodcuts => {
         this.data = {
           id: prodcuts.length + 1,
@@ -122,9 +123,9 @@ export class AddEditProductComponent implements OnInit {
           price: this.productForm.controls['price'].value,
           discount: this.productForm.controls['discount'].value,
         }
-        
         this._productService.addProduct(this.data);
-        sub.unsubscribe()
+        sub.unsubscribe();
+        this.activeModal.close();
       })
     }
 
