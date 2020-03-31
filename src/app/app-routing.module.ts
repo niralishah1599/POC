@@ -28,9 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations:[
-  
-  ],
+  declarations:[],
   imports: [
    AngularFontAwesomeModule,
   RouterModule.forRoot(routes),

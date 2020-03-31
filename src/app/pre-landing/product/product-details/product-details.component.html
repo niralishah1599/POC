@@ -69,13 +69,13 @@
             <td>{{product.discounted}}</td>
             <ng-container *ngIf="product.discounted==discount;else elseBlock">
               <td>
-                <input type="number" class="form-control" name="discount" id="discount" #discountinput="ngModel"
+                <input type="number" class="form-control" name="discount"  id="discount" #discountinput="ngModel"
                   [(ngModel)]="product.discount" required />
                 <div *ngIf="discountinput.invalid && (discountinput.touched || discountinput.dirty)">
                   <div *ngIf="discountinput.errors?.required" class="alert alert-danger">
                     Discount is required
                   </div>
-
+                 
                 </div>
               </td>
             </ng-container>
