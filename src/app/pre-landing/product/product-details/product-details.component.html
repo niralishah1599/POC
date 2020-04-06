@@ -30,24 +30,20 @@
           </select>
         </div>
       </div>
-
       <div class="col-xs-4 pt-3" style="margin-left:420px">
         <button type="button" class="btn btn-primary" (click)="openSideModal(content)">
           Add
         </button>
-
       </div>&nbsp;
       <div class="col-xs-4 pt-3">
-        <button type="submit" class="btn btn-success" (click)="exportToExcel()" style="float:right;">Export To
-          Excel</button>
+        <button type="submit" class="btn btn-success" (click)="exportToExcel()" style="float:right;">
+          Export To Excel</button>
       </div>
-
-
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">ProductId</th>
-            <th scope="col">ProductName</th>
+            <th scope="col">Product Id</th>
+            <th scope="col">Product Name</th>
             <th scope="col">Supplier</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
@@ -69,17 +65,15 @@
             <td>{{product.discounted}}</td>
             <ng-container *ngIf="product.discounted==discount;else elseBlock">
               <td>
-                <input type="number" class="form-control" name="discount"  id="discount" #discountinput="ngModel"
+                <input type="number" class="form-control" name="discount" id="discount" #discountinput="ngModel"
                   [(ngModel)]="product.discount" required />
                 <div *ngIf="discountinput.invalid && (discountinput.touched || discountinput.dirty)">
                   <div *ngIf="discountinput.errors?.required" class="alert alert-danger">
                     Discount is required
                   </div>
-                 
                 </div>
               </td>
             </ng-container>
-
             <ng-template #elseBlock>
               <td>--</td>
             </ng-template>
@@ -89,9 +83,7 @@
               </button>
             </td>
           </tr>
-
         </tbody>
-      
       </table>
       <div *ngIf="this.collectionSize==0&&!showSpinner">
         <h3>Oops! No DATA FOUND</h3>

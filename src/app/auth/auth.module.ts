@@ -48,8 +48,7 @@ const routes:Routes=[
     RegisterComponent,
     ForgetPasswordComponent,
     NoContainSpaceDirective
-
-  ],
+   ],
   imports: [
     CommonModule,
     FormsModule,

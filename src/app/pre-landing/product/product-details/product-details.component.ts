@@ -17,7 +17,7 @@ import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.compone
 import { CenterModalComponent } from 'src/app/modals/center-modal/center-modal.component';
 
 //pipe
-import { FilterPipe } from 'src/app/pipes/filter.pipe';
+import { FilterPipe } from 'src/app/core/pipes/filter.pipe';
 
 @Component({
   selector: 'app-product-details',

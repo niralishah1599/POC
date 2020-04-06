@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import {Component,OnInit,Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,16 +19,16 @@ export class SideModalComponent implements OnInit {
  
     if(this.content=="addOrder")
     {
-      this.order=true;
+      this.order=!this.order;
     }
     if(this.content=="addProduct")
     {
-      this.product=true;
+      this.product=!this.product;
     }
     if(this.advanceSearchcontent=="advanceSearch")
-   {
-     this.search=true;
-   }
+    {
+     this.search=!this.search;
+    }
   }
 
 }

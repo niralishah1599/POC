@@ -1,11 +1,11 @@
 import { Component, OnInit ,Input} from '@angular/core';
 //service
-import {OrderServiceService} from "src/app/services/order-service.service";
+import {OrderService} from "src/app/services/order.service";
 import {ExcelService} from "src/app/services/excel.service";
 //interface
 import {Iorder}from "src/app/models/order";
 //filter
-import {orderFilter}  from "src/app/pipes/orderFilter.pipe";
+import {orderFilter}  from "src/app/core/pipes/orderFilter.pipe";
 //modal
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 //component
@@ -29,7 +29,7 @@ export class OrderDetailsComponent implements OnInit {
   filteredOrders:Iorder[] = [];
   advanceSearchContent:string="advanceSearch";
   showSpinner:boolean=true; 
-  constructor(private _orderService:OrderServiceService,private _orderFilter:orderFilter,private modalService:NgbModal,private _excelService:ExcelService) { }
+  constructor(private _orderService:OrderService,private _orderFilter:orderFilter,private modalService:NgbModal,private _excelService:ExcelService) { }
 
   ngOnInit() {
     this.getAllOrderData();
@@ -40,7 +40,6 @@ export class OrderDetailsComponent implements OnInit {
     });
    
   }
-
 
   //toGetOrderData
   getAllOrderData()

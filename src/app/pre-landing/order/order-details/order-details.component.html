@@ -1,7 +1,6 @@
 <div class="body">
   <div class="container">
     <div class="row">
-
       <div class="main col-xs-3">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -12,12 +11,10 @@
             (input)="filterOrder($event)">
         </div>
       </div>
-
       <div class="add col-xs-4 pt-3">
         <button type="button" class="btn btn-primary" (click)="openSideModal(content);">
           Add
         </button>
-
       </div>&nbsp;
       <div class="search col-xs-4 pt-3">
         <button type="submit" class="btn btn-info" (click)="openAdvanceSearchSideModal(advanceSearchContent)">
@@ -33,19 +30,17 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">OrderId</th>
-            <th scope="col">CustomerName</th>
+            <th scope="col">Order Id</th>
+            <th scope="col">Customer Name</th>
             <th scope="col">Shipper</th>
-            <th scope="col">OrderDate</th>
-            <th scope="col">OrderTotal</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Order Total</th>
             <th scope="col">Edit</th>
           </tr>
         </thead>
-
         <div *ngIf="showSpinner">
           <app-loader></app-loader>
         </div>
-
         <tbody *ngIf="orders.length>0">
           <tr *ngFor="let order of orders| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
             <td>{{order.id}}</td>

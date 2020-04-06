@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Iorder } from 'src/app/models/order';
-
 @Injectable({
   providedIn: 'root'
 })
-export class OrderServiceService {
+export class OrderService {
 
   private filteredData: BehaviorSubject<Iorder[]> = new BehaviorSubject([]);
 
-  constructor(private angularFireDatabase: AngularFireDatabase) { }
+  constructor(private angularFireDatabase: AngularFireDatabase) {}
+
 
   //toGetFilteredObs
   getFilteredObs(): Observable<Iorder[]> {
@@ -49,4 +49,4 @@ export class OrderServiceService {
     })
     return property
   }
-}
+} 

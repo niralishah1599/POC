@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 //service
-import { OrderServiceService } from "src/app/services/order-service.service";
+import { OrderService } from "src/app/services/order.service";
 //interface
 import { Iorder } from 'src/app/models/order';
 import { IadvanceSearch } from 'src/app/models/advanceSearch';
 //validator
 import { Validators, FormBuilder } from '@angular/forms';
 //filter
-import { searchFilter } from 'src/app/pipes/searchFilter.pipe';
+import { searchFilter } from 'src/app/core/pipes/searchFilter.pipe';
 //modal
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-advance-search',
   templateUrl: './advance-search.component.html',
@@ -25,7 +26,7 @@ export class AdvanceSearchComponent implements OnInit {
   selectedShipper: [];
   selectedFields: IadvanceSearch;
 
-  constructor(private _orderService: OrderServiceService, private fb: FormBuilder, private _searchFilter: searchFilter, private activeModal: NgbActiveModal) { }
+  constructor(private _orderService: OrderService, private fb: FormBuilder, private _searchFilter: searchFilter, private activeModal: NgbActiveModal) { }
 
   advanceSearchForm = this.fb.group({
     selectedShippers: [, [Validators.required]],
@@ -43,7 +44,7 @@ export class AdvanceSearchComponent implements OnInit {
       this.shipper = this._orderService.getCustomerNameOrShipper(data.map(data => data['shipper']));
     })
   }
-  
+
   //toGetSelectedShipperData
   get selectedShippers() {
     return this.advanceSearchForm.get('selectedShippers')
@@ -56,9 +57,7 @@ export class AdvanceSearchComponent implements OnInit {
 
   //ToSubmitFilteredData
   onSubmit() {
-   // console.log(this.advanceSearchForm.value);
     this.orders = this._searchFilter.transform(this.filteredOrders, this.advanceSearchForm.value);
-    //console.log("order", this.orders);
     this.activeModal.close();
     this._orderService.filterdData(this.orders);
   }

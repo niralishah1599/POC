@@ -6,7 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 //interface
 import { Iorder } from "src/app/models/order";
 //service
-import { OrderServiceService } from "src/app/services/order-service.service";
+import { OrderService } from "src/app/services/order.service";
 //modal
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,7 +21,7 @@ export class AddEditOrderComponent implements OnInit {
   orderLength: number;
   @Input() public editOrder: Iorder;
 
-  constructor(private _orderService: OrderServiceService, private activeModal: NgbActiveModal, private fb: FormBuilder, private angularFireDatabase: AngularFireDatabase) { }
+  constructor(private _orderService: OrderService, private activeModal: NgbActiveModal, private fb: FormBuilder, private angularFireDatabase: AngularFireDatabase) { }
 
   orderForm = this.fb.group({
     customerName: ["", Validators.required],
@@ -36,8 +36,7 @@ export class AddEditOrderComponent implements OnInit {
     this.getOrders();
 
     if (this.editOrder) {
-      console.log('hello');
-      this.orderForm.patchValue({
+        this.orderForm.patchValue({
         id: this.editOrder.id,
         customerName: this.editOrder.customerName,
         address: this.editOrder.address,

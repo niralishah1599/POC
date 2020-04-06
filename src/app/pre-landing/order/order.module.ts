@@ -23,10 +23,7 @@ const routes:Routes=[
   ]
 
 @NgModule({
-  declarations: [
-     OrderDetailsComponent,
-    
-  ],
+  declarations: [OrderDetailsComponent],
   imports: [
     CommonModule,
     FormsModule,
