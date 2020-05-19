@@ -28,12 +28,12 @@
       <br>
 
       <table class="table">
-        <thead class="thead-dark">
+        <thead class="table table-dark">
           <tr>
             <th scope="col">Order Id</th>
-            <th scope="col">Customer Name</th>
-            <th scope="col">Shipper</th>
-            <th scope="col">Order Date</th>
+            <th scope="col">Customer Name<i class="arrow" (click)="sortBy('customerName')" [ngClass]="sortClass.customerName"></i></th>
+            <th scope="col">Shipper<i class="arrow" (click)="sortBy('shipper')" [ngClass]="sortClass.shipper"></i></th>
+            <th scope="col">Order Date<i class="arrow" (click)="sortBy('orderDate')" [ngClass]="sortClass.orderDate"></i></th>
             <th scope="col">Order Total</th>
             <th scope="col">Edit</th>
           </tr>

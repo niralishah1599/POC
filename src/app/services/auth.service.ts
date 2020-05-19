@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
-//angularfire
+// angularfire
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
-//router
+
+// router
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -18,16 +19,16 @@ export class AuthService {
   ) { }
 
   //registration
-  register(formData)
+  register(email,password)
   {
     
    this.angularFireAuth.auth.createUserWithEmailAndPassword(
-    formData.value.email, formData.value.password
+    email,password
    ).
    then(()=>{
      window.localStorage.setItem('uid',this.angularFireAuth.auth.currentUser.uid)
      this.angularFireDatabase.object('/users/' + localStorage.getItem('uid') + '/userDetails').set({
-      email: formData.value.email,password:formData.value.password
+      email:email,password:password
      })
      
     this.router.navigateByUrl('auth/login')
@@ -39,24 +40,23 @@ export class AuthService {
   }
 
   //login
-  login(formData)
+  login(email,password)
   {
-    
-   window.localStorage.setItem('uid',this.angularFireAuth.auth.currentUser.uid)
     this.angularFireAuth.auth.signInWithEmailAndPassword(
-      formData.value.email,formData.value.password
+      email,password
     ).then(()=>{
+      window.localStorage.setItem('uid',this.angularFireAuth.auth.currentUser.uid)
     this.router.navigateByUrl('/pre-landing/dashboard')
     }).catch((err)=>{
     alert(err['message'])
   })
-  }
+  }           
 
   //forgetPassword
-  forgetPassword(formData)
+  forgetPassword(email)
   {
-  
-    this.angularFireAuth.auth.sendPasswordResetEmail(formData.value.email).then(()=>{
+    console.log(email);
+    this.angularFireAuth.auth.sendPasswordResetEmail(email).then(()=>{
       alert("email sent")
      this.router.navigateByUrl('/auth/login')
 

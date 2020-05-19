@@ -13,19 +13,22 @@ import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.compone
 import { AddEditProductComponent } from './add-edit-product/add-edit-product.component';
 import { CenterModalComponent } from 'src/app/modals/center-modal/center-modal.component';
 
-
+// directive
+import { MinMaxValidatorDirective } from 'src/app/core/directive/min-max-validator.directive';
+import { BorderColorDirective } from 'src/app/core/directive/border-color.directive';
 
 const routes:Routes=[
-{
+ {
   path:'',
   component:ProductDetailsComponent
-
-}
+ }
 ]
 
 @NgModule({
   declarations: [
     ProductDetailsComponent,
+    MinMaxValidatorDirective,
+    BorderColorDirective
   ],
   imports: [
     CommonModule,

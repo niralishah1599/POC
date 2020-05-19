@@ -9,7 +9,7 @@ import { IadvanceSearch } from 'src/app/models/advanceSearch';
   providedIn: 'root'
 })
 
-export class searchFilter implements PipeTransform {
+export class AdvanceSearchPipe implements PipeTransform {
 
   selectedFromDate: string;
   selectedToDate: string;

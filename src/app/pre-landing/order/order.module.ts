@@ -17,13 +17,16 @@ import { AdvanceSearchComponent } from './advance-search/advance-search.componen
 
 
 const routes:Routes=[
-
-  {path:'',component:OrderDetailsComponent}
-
-  ]
+     {
+        path:'',
+        component:OrderDetailsComponent
+     }
+]
 
 @NgModule({
-  declarations: [OrderDetailsComponent],
+  declarations: [
+    OrderDetailsComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

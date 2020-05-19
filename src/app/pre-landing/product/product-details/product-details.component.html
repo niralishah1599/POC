@@ -40,15 +40,16 @@
           Export To Excel</button>
       </div>
       <table class="table">
-        <thead class="thead-dark">
+        <thead class="table table-dark">
           <tr>
             <th scope="col">Product Id</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Supplier</th>
-            <th scope="col">Category</th>
-            <th scope="col">Price</th>
+            <th scope="col">Product Name <i class="arrow" (click)="sortBy('name')" [ngClass]="sortClass.name"></i></th>
+            <th scope="col">Supplier<i class="arrow" (click)="sortBy('supplier')" [ngClass]="sortClass.supplier"></i> </th>
+            <th scope="col">Category<i class="arrow" (click)="sortBy('category')" [ngClass]="sortClass.category"></i></th>
+            <th scope="col">Price<i class="arrow" (click)="sortBy('price')" [ngClass]="sortClass.price"></i></th>
             <th scope="col">Discounted</th>
             <th scope="col">Discount</th>
+            <th scope="col">Total Amount</th>
             <th scope="col">Edit</th>
           </tr>
         </thead>
@@ -66,14 +67,23 @@
             <ng-container *ngIf="product.discounted==discount;else elseBlock">
               <td>
                 <input type="number" class="form-control" name="discount" id="discount" #discountinput="ngModel"
-                  [(ngModel)]="product.discount" required />
+                  [(ngModel)]="product.discount" [appInputBorderColor]="product.discount" [customMin]="minNum"
+                  [customMax]="maxNum" (mouseleave)="chnageDiscount(product)" required />
                 <div *ngIf="discountinput.invalid && (discountinput.touched || discountinput.dirty)">
                   <div *ngIf="discountinput.errors?.required" class="alert alert-danger">
                     Discount is required
                   </div>
+                  <div *ngIf="discountinput.errors.customMin" class="alert alert-danger">
+                    Number must be 1 or greater than 1
+                  </div>
+                  <div *ngIf="discountinput.errors.customMax" class="alert alert-danger">
+                    Number must be 50 or less than 50
+                  </div>
+
                 </div>
               </td>
             </ng-container>
+            <td>{{(product.price * (100-product.discount))/100}}</td>
             <ng-template #elseBlock>
               <td>--</td>
             </ng-template>

@@ -1,0 +1,117 @@
+.container{
+   .row{
+          margin-top: 20px;
+
+              .card{
+                box-shadow: 0 6px 10px -4px gray;
+
+                .card-body1{
+                    background-color:rgb(88, 165, 190);
+                    color:white;
+                    border-radius: 2px;
+                    .row{
+                            .icon {
+                                padding-left:30px;
+                            }
+                            .detail{
+                                h1{
+                                    padding-left: 190px;
+                                }
+                                h4{
+                                    padding-left: 120px;
+                                }
+                            }
+                   
+                        }    
+                  
+                     
+                }
+                .footercard1{
+                    
+                    span{
+                        label{
+                            color:rgb(133, 185, 202)
+                        }
+                    }
+                    span{
+                        i{
+                            color:rgb(133, 185, 202)
+                            //style="color:#d64161;
+                        }
+                    }
+                }   
+                .card-body2{
+                    background-color:#d64161;
+                    color:white; 
+                    border-radius: 2px;
+                     .row{
+                        .icon {
+                            padding-left:30px;
+                        }
+                        .detail{
+                            h1{
+                                padding-left: 190px;
+                            }
+                            h4{
+                                padding-left: 140px;
+                            }
+                        }
+               
+                    }      
+
+
+                }
+                .footercard2{
+                    
+                    span{
+                        label{
+                          
+                            color:#d64161;
+                        }
+                    }
+                    span{
+                        i{
+                            color:#d64161;
+                        }
+                    }
+                }   
+                .card-body3{
+                    background-color:#feb236;
+                    color:white;
+                    border-radius: 2px;
+                     .row{
+                        .icon {
+                            padding-left:30px;
+                        }
+                        .detail{
+                            h1{
+                                padding-left: 190px;
+                            }
+                            h4{
+                                padding-left: 160px;
+                            }
+                        }
+               
+                    }      
+
+
+                }
+
+                .footercard3{
+                    
+                    span{
+                        label{
+                          
+                            color:#feb236;
+                        }
+                    }
+                    span{
+                        i{
+                            color:#feb236;
+                        }
+                    }
+                }   
+              
+       }
+   }
+}

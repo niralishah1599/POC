@@ -49,4 +49,8 @@ export class OrderService {
     })
     return property
   }
+  sortBy(key): Observable<Iorder[]>{
+    return this.angularFireDatabase.list<Iorder>('/orders', ref=>ref.orderByChild(key)).valueChanges();
+   
+   }
 } 

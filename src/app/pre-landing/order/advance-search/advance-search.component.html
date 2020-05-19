@@ -56,10 +56,16 @@
                     <input class="form-control" type="number" formControlName="selectedFromAmount"
                         placeholder="Enter Minimum Price" required>
                 </div>
+                <div *ngIf="advanceSearchForm.controls['selectedFromAmount'].errors?.min" class="alert alert-danger">
+                    Value Must be More than 0
+                </div>
                 <div class="To input-group">
                     <span class="label">To</span>
                     <input class="form-control" type="number" formControlName="selectedToAmount"
                         placeholder="Enter Maximum Price" required>
+                </div>
+                <div *ngIf="advanceSearchForm.controls['selectedToAmount'].errors?.min" class="alert alert-danger">
+                    Value Must be More than 0
                 </div>
             </fieldset>
             <button type="submit" class="btn btn-success">

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { Iproduct } from 'src/app/models/product';
 
@@ -8,19 +7,21 @@ import { Iproduct } from 'src/app/models/product';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
 
-  private url = '/products'
+  public url = '/products'
   products: Iproduct[] = [];
-  productRef: AngularFireList<Iproduct> = null;
+  //productRef: AngularFireList<Iproduct> = null;
 
   constructor(
     private angularFireDatabase: AngularFireDatabase) {
-    this.productRef = this.angularFireDatabase.list(this.url);
+   //this.productRef = this.angularFireDatabase.list(this.url);
   }
   //toGetProductData
   getAllData(): Observable<Iproduct[]> {
-    return this.angularFireDatabase.list<Iproduct>('/products').valueChanges()
+     return this.angularFireDatabase.list<Iproduct>('/products').valueChanges()
+    
   }
   //addProduct
   addProduct(product: Iproduct) {
@@ -43,5 +44,10 @@ export class ProductService {
     })
     return property
   }
+
+  sortBy(key): Observable<Iproduct[]>{
+    return this.angularFireDatabase.list<Iproduct>('/products', ref=>ref.orderByChild(key)).valueChanges();
+   
+   }
 }
 

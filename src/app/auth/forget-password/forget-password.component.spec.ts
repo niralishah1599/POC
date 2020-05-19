@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ForgetPasswordComponent } from './forget-password.component';
 
-describe('ForgetPasswordComponent', () => {
-  let component: ForgetPasswordComponent;
-  let fixture: ComponentFixture<ForgetPasswordComponent>;
+describe("Forget password Component",()=>{
+  let component : ForgetPasswordComponent;
+  let mockAuthService;
+  let email= "shahnirali51@gmail.com"
+  beforeEach(()=>{
+    mockAuthService = jasmine.createSpyObj(['forgetPassword'])
+    component =  new ForgetPasswordComponent(mockAuthService)
+  })
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ForgetPasswordComponent ]
+  describe('Forget password',()=>{
+     it('should call forget password with correct email ',()=>{
+      spyOn(component, "forgetPassword");
+      component.forgetPassword(email);
+      expect(component.forgetPassword).toHaveBeenCalledWith("shahnirali51@gmail.com");
     })
-    .compileComponents();
-  }));
+    it('should call mockauthService in forgetpassword function ',()=>{
+        component.forgetPassword(email);
+        expect(mockAuthService.forgetPassword).toHaveBeenCalledWith(email);
+      })
+ })
+})
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ForgetPasswordComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});

@@ -8,7 +8,7 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-import { NoContainSpaceDirective } from './custom-validator/no-contain-space.directive';
+import { NoContainSpaceDirective } from '../core/directive/no-contain-space.directive';
 
 
 

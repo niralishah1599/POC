@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Router} from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -10,14 +11,13 @@ import {Router} from '@angular/router';
 export class ForgetPasswordComponent implements OnInit {
 
   
-  constructor(private router:Router) { }
+  constructor(private _authService:AuthService) { }
 
   ngOnInit() {}
 
-  //redirect to login
-  goBackToLogin()
-  {
-    this.router.navigateByUrl('/auth/login')
+  //forget password
+  forgetPassword(email){
+    this._authService.forgetPassword(email);
   }
-
+ 
 }

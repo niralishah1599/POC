@@ -1,23 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-//interface
+// interface
 import { Iproduct } from 'src/app/models/product';
 
 
-//firedatabase
-import { AngularFireDatabase } from 'angularfire2/database';
-
-//service
+// service
 import { ProductService } from 'src/app/services/product.service';
 import { ExcelService } from 'src/app/services/excel.service';
 
-//component
+// component
 import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.component';
 import { CenterModalComponent } from 'src/app/modals/center-modal/center-modal.component';
 
 //pipe
-import { FilterPipe } from 'src/app/core/pipes/filter.pipe';
+import { ProductSearchPipe } from 'src/app/core/pipes/product-search.pipe';
 
 @Component({
   selector: 'app-product-details',
@@ -28,9 +25,9 @@ export class ProductDetailsComponent implements OnInit {
 
   @Input() page = 1;
   @Input() pageSize = 10;
-  @Input() collectionSize: number = 100;
+  @Input() collectionSize = 100;
 
-
+  order: string = 'decending';
   products: Iproduct[] = [];
   discount: string = "Yes";
   searchItem: string = "";
@@ -39,12 +36,21 @@ export class ProductDetailsComponent implements OnInit {
   categories: Iproduct[] = [];
   selectedSupplier: string;
   selectedCategory: string;
-  content: string = "addProduct";
-  showSpinner:boolean=true;
-  constructor(public _productService: ProductService, public _filterPipe: FilterPipe,private modalService: NgbModal, private _excelService: ExcelService) { }
+  content = 'addProduct';
+  showSpinner = true;
+  minNum = 1;
+  maxNum = 50;
+  sortClass = {
+    name: 'down',
+    supplier: 'down',
+    category: 'down',
+    price: 'down'
+  }
+
+  constructor(private _productService: ProductService, private productSearchPipe: ProductSearchPipe, private modalService: NgbModal, private _excelService: ExcelService) { }
 
   ngOnInit() {
-    this.getProducts()
+    this.getProducts();
   }
 
   //toGetProductData
@@ -55,9 +61,30 @@ export class ProductDetailsComponent implements OnInit {
       this.filteredProducts = data;
       this.suppliers = this._productService.getSuppliersOrCategories(data.map(data => data['supplier']));
       this.categories = this._productService.getSuppliersOrCategories(data.map(data => data['category']));
-      this.showSpinner=false;
+      this.showSpinner = false;
     })
   }
+
+  //performSortingOnField 
+  sortBy(key) {
+
+    if (this.order == 'decending' && this.sortClass[key] == 'down') {
+      this._productService.sortBy(key).subscribe(data => {
+        this.products = data
+      })
+      this.order = "ascending";
+      this.sortClass[key] = 'up';
+    }
+    else {
+      this._productService.sortBy(key).subscribe(data => {
+        this.products = data.reverse()
+      })
+      this.order = 'decending';
+      this.sortClass[key] = 'down';
+    }
+  }
+
+
 
   //toOpenSideModelForNewProduct
   openSideModal(content) {
@@ -65,7 +92,7 @@ export class ProductDetailsComponent implements OnInit {
     modalAddRef.componentInstance.content = content;
   }
 
- //toOpenCenterModelForEditProduct
+  //toOpenCenterModelForEditProduct
   openCenterModal(product: Iproduct) {
     const modalRef = this.modalService.open(CenterModalComponent);
     modalRef.componentInstance.product = product;
@@ -87,16 +114,22 @@ export class ProductDetailsComponent implements OnInit {
         this.selectedCategory = '';
       }
     }
-    this.products = this._filterPipe.transform(this.filteredProducts, this.searchItem, this.selectedSupplier, this.selectedCategory);
+    this.products = this.productSearchPipe.transform(this.filteredProducts, this.searchItem, this.selectedSupplier, this.selectedCategory);
     this.collectionSize = this.products.length
 
+  }
+
+  //change discount 
+  chnageDiscount(obj) {
+    this._productService.updateProduct(obj);
   }
 
   //exportingDataToExcel
   exportToExcel() {
     let fileName = 'products.csv';
     let columnNames = ["productId", "Product Name", "Supplier", "Category", "Price", "discounted", "discount"];
-    this._excelService.exportToExcel(fileName, columnNames, this.products.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize))
+    this._excelService.exportToExcel(fileName, columnNames, this.products.slice((this.page - 1) * this.pageSize,
+      (this.page - 1) * this.pageSize + this.pageSize));
   }
 
 }

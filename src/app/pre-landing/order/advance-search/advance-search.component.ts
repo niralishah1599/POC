@@ -7,7 +7,7 @@ import { IadvanceSearch } from 'src/app/models/advanceSearch';
 //validator
 import { Validators, FormBuilder } from '@angular/forms';
 //filter
-import { searchFilter } from 'src/app/core/pipes/searchFilter.pipe';
+import { AdvanceSearchPipe } from 'src/app/core/pipes/advance-search.pipe';
 //modal
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -25,16 +25,16 @@ export class AdvanceSearchComponent implements OnInit {
   searchObj: Iorder;
   selectedShipper: [];
   selectedFields: IadvanceSearch;
-
-  constructor(private _orderService: OrderService, private fb: FormBuilder, private _searchFilter: searchFilter, private activeModal: NgbActiveModal) { }
+ 
+  constructor(private _orderService: OrderService, private fb: FormBuilder, private advanceSearchPipe: AdvanceSearchPipe, private activeModal: NgbActiveModal) { }
 
   advanceSearchForm = this.fb.group({
     selectedShippers: [, [Validators.required]],
     selectedCustomerNames: [, [Validators.required]],
     selectedFromDate: [, [Validators.required]],
     selectedToDate: [, [Validators.required]],
-    selectedFromAmount: [, [Validators.required]],
-    selectedToAmount: [, [Validators.required]],
+    selectedFromAmount: [, [Validators.required,Validators.min(1)]],
+    selectedToAmount: [, [Validators.required,,Validators.min(1)]],
   })
   ngOnInit() {
     this._orderService.getAllData().subscribe(data => {
@@ -57,7 +57,7 @@ export class AdvanceSearchComponent implements OnInit {
 
   //ToSubmitFilteredData
   onSubmit() {
-    this.orders = this._searchFilter.transform(this.filteredOrders, this.advanceSearchForm.value);
+    this.orders = this.advanceSearchPipe.transform(this.filteredOrders, this.advanceSearchForm.value);
     this.activeModal.close();
     this._orderService.filterdData(this.orders);
   }

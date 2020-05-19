@@ -5,12 +5,12 @@ import {ExcelService} from "src/app/services/excel.service";
 //interface
 import {Iorder}from "src/app/models/order";
 //filter
-import {orderFilter}  from "src/app/core/pipes/orderFilter.pipe";
+import {OrderSearchPipe}  from "src/app/core/pipes/order-search.pipe";
 //modal
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 //component
 import { SideModalComponent } from 'src/app/modals/side-modal/side-modal.component';
-import {CenterModalComponent} from "src/app/modals/center-modal/center-modal.component";
+import {CenterModalComponent} from 'src/app/modals/center-modal/center-modal.component';
 
 @Component({
   selector: 'app-order-details',
@@ -29,7 +29,13 @@ export class OrderDetailsComponent implements OnInit {
   filteredOrders:Iorder[] = [];
   advanceSearchContent:string="advanceSearch";
   showSpinner:boolean=true; 
-  constructor(private _orderService:OrderService,private _orderFilter:orderFilter,private modalService:NgbModal,private _excelService:ExcelService) { }
+  order: string = 'decending';
+  sortClass= {
+    customerName:'down',
+    shipper:'down',
+    orderDate:'down'
+  }
+  constructor(private _orderService:OrderService,private orderSearchPipe:OrderSearchPipe,private modalService:NgbModal,private _excelService:ExcelService) { }
 
   ngOnInit() {
     this.getAllOrderData();
@@ -56,7 +62,7 @@ export class OrderDetailsComponent implements OnInit {
 
   //toGetOrderDataAfterApplyingFilter
   filterOrder($event){
-     this.orders=this._orderFilter.transform(this.filteredOrders, this.searchItem);
+     this.orders=this.orderSearchPipe.transform(this.filteredOrders, this.searchItem);
     this.collectionSize = this.orders.length
   }
 
@@ -78,6 +84,25 @@ export class OrderDetailsComponent implements OnInit {
   {
     const modalSearchRef=this.modalService.open(SideModalComponent);
     modalSearchRef.componentInstance.advanceSearchcontent=advanceSearchcontent;
+  }
+
+   //performSortingOnField 
+   sortBy(key) {
+
+    if (this.order == 'decending' && this.sortClass[key] == 'down') {
+      this._orderService.sortBy(key).subscribe(data => {
+        this.orders = data
+      })
+      this.order = "ascending";
+      this.sortClass[key] = 'up';
+    }
+    else {
+      this._orderService.sortBy(key).subscribe(data => {
+        this.orders= data.reverse()
+      })
+      this.order = 'decending';
+      this.sortClass[key] = 'down';
+    }
   }
 
   //exportingDataToExcel

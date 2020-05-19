@@ -2,12 +2,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
-
+import {ChartsModule} from 'ng2-charts';
 //component
 import { PreLandingComponent } from './pre-landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
-import { CanActivateGuard } from '../guard/can-activate.guard';
+import { ProtectGuard } from '../guard/protect.guard';
 
 const routes:Routes=[
   {
@@ -22,7 +22,7 @@ const routes:Routes=[
       {
         path:'dashboard',
         component:DashboardComponent,
-        canActivate:[CanActivateGuard]
+        canActivate: [ProtectGuard]
       },
       {
         path:'product',
@@ -45,6 +45,7 @@ const routes:Routes=[
   ],
   imports: [
     CommonModule,
+    ChartsModule,
     RouterModule.forChild(routes)
   ],
 

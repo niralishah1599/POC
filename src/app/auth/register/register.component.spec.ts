@@ -1,25 +1,45 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { of } from 'rxjs';
 import { RegisterComponent } from './register.component';
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe("Register Component",()=>{
+  let component : RegisterComponent;
+  let user;
+  let mockAuthService;
+  beforeEach(()=>{
+    user = {email:"shahnirali51@gmail.com",password:"nirali123"}
+    mockAuthService = jasmine.createSpyObj(['register'])
+    component =  new RegisterComponent(mockAuthService)
+  })
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ]
+  describe('register',()=>{
+    it('should check the correct email in register ',()=>{
+      component.user=user;
+      component.register();
+      expect(component.user.email).toEqual("shahnirali51@gmail.com");
     })
-    .compileComponents();
-  }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    it('should check the correct password in register ',()=>{
+      component.user=user;
+      component.register();
+      expect(component.user.password).toEqual("nirali123");
+    })
+   
+    it('should call register ',()=>{
+      component.user=user;
+      spyOn(component,"register")
+      component.register();
+      expect(component.register).toHaveBeenCalled();
+    })
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    it('should call mock authservice in register funtion',()=>{
+      component.user=user;
+      component.register();
+      expect(mockAuthService.register).toHaveBeenCalledWith(user.email,user.password);
+       
+    })
+         
+
+  
+  })
+})
+

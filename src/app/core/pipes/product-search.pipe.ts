@@ -7,7 +7,7 @@ import { Iproduct } from 'src/app/models/product';
 @Injectable({
   providedIn: 'root'
 })
-export class FilterPipe implements PipeTransform {
+export class ProductSearchPipe implements PipeTransform {
 
   transform(items: Iproduct[], searchText: string, supplier: string, category: string): Iproduct[] {
     if (!items) {

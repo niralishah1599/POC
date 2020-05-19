@@ -11,7 +11,6 @@ import { LoaderComponent } from '../core/loader/loader.component';
 
 
 
-
 @NgModule({
   declarations: [
     SideModalComponent,

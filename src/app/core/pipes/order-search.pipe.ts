@@ -7,7 +7,7 @@ import { Iorder } from 'src/app/models/order';
 @Injectable({
   providedIn: 'root'
 })
-export class orderFilter implements PipeTransform {
+export class OrderSearchPipe implements PipeTransform {
     transform(items: Iorder[], searchText: string): Iorder[]
     {
         if (!items) {

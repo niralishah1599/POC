@@ -15,14 +15,14 @@ export class RegisterComponent implements OnInit {
 
   user:Iuser={email:"",password:""}
   
-  constructor(private authService:AuthService) { }
+  constructor(private _authService:AuthService) { }
 
   ngOnInit() {
   }
 
   //register
-  register(formData)
+  register()
   {
-    this.authService.register(formData)
+    this._authService.register(this.user.email,this.user.password)
   }
 }

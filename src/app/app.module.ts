@@ -6,13 +6,10 @@ import { AppComponent } from './app.component';
 
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabaseModule} from 'angularfire2/database';
 
 import {environment} from '../environments/environment';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
-
-
 
 
 //firebase
@@ -21,8 +18,7 @@ export const firebaseConfig = environment.firebaseConfig
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
-  
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
